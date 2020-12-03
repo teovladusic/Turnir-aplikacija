@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TurnirAplikacija">
-        <activity android:name=".RegisterPlayersActivity"></activity>
+        <activity android:name=".PrikazUtakmiceActivity"></activity>
+        <activity android:name=".RezultatiActivity" />
+        <activity android:name=".RegisterPlayersActivity" />
         <activity android:name=".PrijaviSeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

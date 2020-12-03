@@ -10,7 +10,11 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     CardView cardViewPrijaviSe;
-
+    CardView cardViewRezultati;
+    CardView cardViewRaspored;
+    CardView cardViewTablica;
+    CardView cardViewStrijelci;
+    CardView cardViewSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,13 +22,26 @@ public class MainActivity extends AppCompatActivity {
         assignViews();
 
 
-        //Create intent and start PrijaviSeActivity on cardViewPrijaviSe click
+        //start RezultatiActivity on cardViewRezultati click
 
-        Intent intentPrijaviSe = new Intent(this, PrijaviSeActivity.class);
+        cardViewRezultati.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RezultatiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+        //start PrijaviSeActivity on cardViewPrijaviSe click
+
         cardViewPrijaviSe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intentPrijaviSe);
+                Intent intent = new Intent(MainActivity.this, PrijaviSeActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -35,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void assignViews(){
         cardViewPrijaviSe = findViewById(R.id.cardViewPrijaviSe);
+        cardViewRaspored = findViewById(R.id.cardViewRaspored);
+        cardViewRezultati = findViewById(R.id.cardViewRezultati);
+        cardViewTablica = findViewById(R.id.cardViewTablica);
+        cardViewStrijelci = findViewById(R.id.cardViewStrijelci);
+        cardViewSettings = findViewById(R.id.cardViewSettings);
     }
 
 }
