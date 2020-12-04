@@ -43,6 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PrikazUtakmiceActivity.class);
+                intent.putExtra("POSITION", position);
                 context.startActivity(intent);
             }
         });

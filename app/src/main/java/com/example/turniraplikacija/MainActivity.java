@@ -21,6 +21,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         assignViews();
 
+        //start RasporedActivity on cardViewRaspored click
+
+        cardViewRaspored.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RasporedActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         //start RezultatiActivity on cardViewRezultati click
 
@@ -31,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
 
         //start PrijaviSeActivity on cardViewPrijaviSe click
