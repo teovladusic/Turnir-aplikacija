@@ -46,8 +46,8 @@
         android:textColorHint="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2" />
 
     <Button
         android:id="@+id/buttonRegister"
@@ -61,6 +61,6 @@
         android:textSize="20sp"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextTeamName"
+        app:layout_constraintStart_toStartOf="@+id/editTextTeamName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
