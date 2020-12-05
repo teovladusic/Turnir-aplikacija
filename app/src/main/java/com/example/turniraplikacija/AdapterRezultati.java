@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class AdapterRezultati extends RecyclerView.Adapter<AdapterRezultati.ViewHolderRezultati> {
 
     ArrayList<String> domaci;
     ArrayList<String> gosti;
     Context context;
 
-    public MyAdapter(ArrayList<String> domaci, ArrayList<String> gosti, Context context) {
+    public AdapterRezultati(ArrayList<String> domaci, ArrayList<String> gosti, Context context) {
         this.domaci = domaci;
         this.gosti = gosti;
         this.context = context;
@@ -28,14 +27,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderRezultati onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recview_rezultati, parent, false);
-        return new MyViewHolder(view);
+        return new ViewHolderRezultati(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderRezultati holder, int position) {
         holder.tvTeam1.setText(domaci.get(position));
         holder.tvTeam2.setText(gosti.get(position));
 
@@ -58,12 +57,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolderRezultati extends RecyclerView.ViewHolder{
 
         TextView tvTeam1, tvTeam2, tvTeam1Goals, tvTeam2Goals;
         ConstraintLayout constraintLayout;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public ViewHolderRezultati(@NonNull View itemView) {
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.constraintLayout);
 

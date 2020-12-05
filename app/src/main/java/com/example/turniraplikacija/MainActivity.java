@@ -21,6 +21,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         assignViews();
 
+        //start StrijelciActivity on cardViewActivity click
+
+        cardViewStrijelci.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, StrijelciActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //start RasporedActivity on cardViewRaspored click
 
         cardViewRaspored.setOnClickListener(new View.OnClickListener() {
