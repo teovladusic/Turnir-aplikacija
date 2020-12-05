@@ -22,7 +22,7 @@ import java.util.Objects;
 public class RegisterPlayersActivity extends AppCompatActivity {
 
     Spinner spinnerNumber, spinnerDay, spinnerMonth, spinnerYear;
-    EditText editTextName, editTextLastName, editTextBirthDate;
+    EditText editTextName, editTextLastName;
     Button buttonRegisterPlayers;
 
     @Override
@@ -45,7 +45,7 @@ public class RegisterPlayersActivity extends AppCompatActivity {
             days.add(i + "");
         }
 
-        for(int i = 1; i <12; i++){
+        for(int i = 1; i <13; i++){
             months.add(i + "");
         }
 
@@ -80,8 +80,15 @@ public class RegisterPlayersActivity extends AppCompatActivity {
                 String month = spinnerMonth.getSelectedItem().toString();
                 String year = spinnerYear.getSelectedItem().toString();
 
-                Player player = new Player(team_name, name, last_name, day, month, year, number);  //TODO: spremi u bazu objekt
-                
+                //Player player = new Player(team_name, name, last_name, day, month, year, number);  //TODO: spremi u bazu objekt
+                Toast.makeText(RegisterPlayersActivity.this, "Igrac registriran", Toast.LENGTH_SHORT).show();
+
+                editTextName.setText("");
+                editTextLastName.setText("");
+                spinnerDay.setSelection(0);
+                spinnerMonth.setSelection(0);
+                spinnerYear.setSelection(0);
+                spinnerNumber.setSelection(0);
             }
         });
 
