@@ -148,13 +148,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="150dp"
                     android:layout_marginEnd="20dp"
-                    android:background="#004C6A"
-                    android:backgroundTintMode="multiply"
                     android:fontFamily="@font/autour_one"
-                    android:text="Registriraj igraca"
-                    android:backgroundTint="@color/svijetlo_plava"/>
+                    android:text="Registriraj igraca" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

@@ -13,39 +13,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AdapterRezultati extends RecyclerView.Adapter<AdapterRezultati.ViewHolderRezultati> {
+public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHolderRaspored> {
 
     ArrayList<String> domaci;
     ArrayList<String> gosti;
     Context context;
-    ArrayList<String> domaci_goals;
-    ArrayList<String> gosti_goals;
+    ArrayList<String> start_time;
 
-    public AdapterRezultati(ArrayList<String> domaci, ArrayList<String> gosti, Context context, ArrayList<String> domaci_goals, ArrayList<String> gosti_goals) {
+    public AdapterRaspored(ArrayList<String> domaci, ArrayList<String> gosti, Context context, ArrayList<String> start_time) {
         this.domaci = domaci;
         this.gosti = gosti;
         this.context = context;
-        this.domaci_goals = domaci_goals;
-        this.gosti_goals = gosti_goals;
+        this.start_time = start_time;
     }
 
     @NonNull
     @Override
-    public ViewHolderRezultati onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolderRaspored onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recview_rezultati_and_raspored, parent, false);
-        return new ViewHolderRezultati(view);
+        return new ViewHolderRaspored(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderRezultati holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderRaspored holder, int position) {
         holder.tvTeam1.setText(domaci.get(position));
         holder.tvTeam2.setText(gosti.get(position));
-        holder.tvTeam1Goals.setText(domaci_goals.get(position));
-        holder.tvTeam2Goals.setText(gosti_goals.get(position));
-        holder.tvStartTime.setVisibility(View.GONE);
-        holder.tvTeam1Goals.setVisibility(View.VISIBLE);
-        holder.tvTeam2Goals.setVisibility(View.VISIBLE);
+        holder.tvTeam1Goals.setVisibility(View.GONE);
+        holder.tvTeam2Goals.setVisibility(View.GONE);
+        holder.tvStartTime.setVisibility(View.VISIBLE);
+        holder.tvStartTime.setText(start_time.get(position));
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +63,12 @@ public class AdapterRezultati extends RecyclerView.Adapter<AdapterRezultati.View
 
 
 
-    public class ViewHolderRezultati extends RecyclerView.ViewHolder{
+    public class ViewHolderRaspored extends RecyclerView.ViewHolder{
 
         TextView tvTeam1, tvTeam2, tvTeam1Goals, tvTeam2Goals, tvStartTime;
         ConstraintLayout constraintLayout;
 
-        public ViewHolderRezultati(@NonNull View itemView) {
+        public ViewHolderRaspored(@NonNull View itemView) {
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.constraintLayout);
 

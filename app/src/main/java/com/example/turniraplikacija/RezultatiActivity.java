@@ -33,7 +33,17 @@ public class RezultatiActivity extends AppCompatActivity {
         gosti.add("reka");
         gosti.add("osijek");
 
-        AdapterRezultati adapter = new AdapterRezultati(domaci, gosti, this);
+        ArrayList<String> domaci_goals = new ArrayList<>();
+        domaci_goals.add("1");
+        domaci_goals.add("2");
+        domaci_goals.add("3");
+
+        ArrayList<String> gosti_goals = new ArrayList<>();
+        gosti_goals.add("1");
+        gosti_goals.add("2");
+        gosti_goals.add("3");
+
+        AdapterRezultati adapter = new AdapterRezultati(domaci, gosti, this, domaci_goals, gosti_goals);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
