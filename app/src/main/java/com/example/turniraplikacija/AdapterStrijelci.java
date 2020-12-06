@@ -37,6 +37,7 @@ public class AdapterStrijelci extends RecyclerView.Adapter<AdapterStrijelci.View
         Integer goal = player.get(position).getGoals();
         holder.tvStrijelac.setText(scorer);
         holder.tvGoals.setText(goal + "");
+        holder.tvRedniBroj.setText((position + 1) + ".");
 
     }
 
@@ -47,13 +48,14 @@ public class AdapterStrijelci extends RecyclerView.Adapter<AdapterStrijelci.View
 
     public class ViewHolderStrijelci extends RecyclerView.ViewHolder{
 
-        TextView tvStrijelac, tvGoals;
+        TextView tvStrijelac, tvGoals, tvRedniBroj;
 
         public ViewHolderStrijelci(@NonNull View itemView) {
             super(itemView);
 
             tvStrijelac = itemView.findViewById(R.id.tvStrijelac);
             tvGoals = itemView.findViewById(R.id.tvGoals);
+            tvRedniBroj = itemView.findViewById(R.id.tvRedniBroj);
         }
     }
 

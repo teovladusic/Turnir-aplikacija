@@ -23,6 +23,7 @@ public class RasporedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rasporedi);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Turnir");
 
         recViewRaspored = findViewById(R.id.recViewRaspored);
 

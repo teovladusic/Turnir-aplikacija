@@ -7,23 +7,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class StrijelciActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
+    RecyclerView recViewSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_strijelci);
+        setContentView(R.layout.activity_search);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Turnir");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewStrijelci);
+        recViewSearch = findViewById(R.id.recViewSearch);
 
         Player player = new Player("ludaci", "teo", "vladusic", "17", "6", "2003", "4");
         Player player1 = new Player("ludaci", "lucija", "anteric", "17", "6", "2003", "4");
@@ -47,9 +46,10 @@ public class StrijelciActivity extends AppCompatActivity {
         players.add(player4);
         players.add(player5);
 
-        AdapterStrijelci adapterStrijelci = new AdapterStrijelci(this, players);
-        recyclerView.setAdapter(adapterStrijelci);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        AdapterSearch adapterSearch = new AdapterSearch(this, players);
+        recViewSearch.setAdapter(adapterSearch);
+        recViewSearch.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     //Back navigation bar button

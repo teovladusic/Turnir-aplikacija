@@ -150,8 +150,11 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="150dp"
                     android:layout_marginEnd="20dp"
+                    android:elevation="8dp"
                     android:fontFamily="@font/autour_one"
-                    android:text="Registriraj igraca" />
+                    android:text="Registriraj igraca"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

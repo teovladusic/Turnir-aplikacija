@@ -15,14 +15,23 @@ public class MainActivity extends AppCompatActivity {
     CardView cardViewRaspored;
     CardView cardViewTablica;
     CardView cardViewStrijelci;
-    CardView cardViewSettings;
+    CardView cardViewSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         assignViews();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); //DISABLE NIGHT MODE
+        getSupportActionBar().setTitle("Turnir");
 
+        //start SearchActivity on cardViewSearch click
+        cardViewSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //start StrijelciActivity on cardViewActivity click
 
@@ -77,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         cardViewRezultati = findViewById(R.id.cardViewRezultati);
         cardViewTablica = findViewById(R.id.cardViewTablica);
         cardViewStrijelci = findViewById(R.id.cardViewStrijelci);
-        cardViewSettings = findViewById(R.id.cardViewSettings);
+        cardViewSearch = findViewById(R.id.cardViewSearch);
     }
 
 }

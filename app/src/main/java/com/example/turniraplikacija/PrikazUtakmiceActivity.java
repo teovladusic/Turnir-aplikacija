@@ -17,6 +17,7 @@ public class PrikazUtakmiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prikaz_utakmice);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Turnir");
 
 
         Intent intent = getIntent();

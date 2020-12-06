@@ -20,6 +20,7 @@ public class RezultatiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rezultati);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Turnir");
 
         recyclerView = findViewById(R.id.recyclerView);
 

@@ -24,6 +24,7 @@ public class PrijaviSeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prijavi_se);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Turnir");
 
         buttonRegister = findViewById(R.id.buttonRegister);
         editTextTeamName = findViewById(R.id.editTextTeamName);
