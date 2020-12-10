@@ -46,11 +46,15 @@ public class PrijaviSeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String team_name = editTextTeamName.getText().toString();
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                reference.child(team_name).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.child(team_name).exists()){
-                            Toast.makeText(PrijaviSeActivity.this, "mrale", Toast.LENGTH_SHORT).show();
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if(snapshot.getValue() != null){
+                            Toast.makeText(PrijaviSeActivity.this, "Tim je vec registriran ", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Intent intent = new Intent(PrijaviSeActivity.this, RegisterPlayersActivity.class);
+                            intent.putExtra("TEAM_NAME", team_name);
+                            startActivity(intent);
                         }
                     }
 

@@ -98,27 +98,30 @@ public class RegisterPlayersActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String name = editTextName.getText().toString();
-                String last_name = editTextLastName.getText().toString();
+                String name = editTextName.getText().toString().trim();
+                String last_name = editTextLastName.getText().toString().trim();
                 String number = spinnerNumber.getSelectedItem().toString();
                 String day = spinnerDay.getSelectedItem().toString();
                 String month = spinnerMonth.getSelectedItem().toString();
                 String year = spinnerYear.getSelectedItem().toString();
 
                 String date = year + "-" + month + "-" + day;
+                if(!name.equals("") && !last_name.equals("")){
+                    Player player = new Player(team_name, name, last_name, date, number);
+                    reference.child("player" + maxid).push().setValue(player);
 
-                Player player = new Player(team_name, name, last_name, date, number);
-                reference.child("player" + maxid).push().setValue(player);
+                    Toast.makeText(RegisterPlayersActivity.this, "Igrac registriran", Toast.LENGTH_SHORT).show();
 
-                //Toast.makeText(RegisterPlayersActivity.this, "Igrac registriran", Toast.LENGTH_SHORT).show();
+                    editTextName.setText("");
+                    editTextLastName.setText("");
+                    spinnerDay.setSelection(0);
+                    spinnerMonth.setSelection(0);
+                    spinnerYear.setSelection(0);
+                    spinnerNumber.setSelection(0);
+                }else{
+                    Toast.makeText(RegisterPlayersActivity.this, "Ime ili prezime ne mogu biti prazni", Toast.LENGTH_SHORT).show();
+                }
 
-
-                editTextName.setText("");
-                editTextLastName.setText("");
-                spinnerDay.setSelection(0);
-                spinnerMonth.setSelection(0);
-                spinnerYear.setSelection(0);
-                spinnerNumber.setSelection(0);
             }
         });
 
