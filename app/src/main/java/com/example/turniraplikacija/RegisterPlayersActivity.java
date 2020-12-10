@@ -1,5 +1,6 @@
 package com.example.turniraplikacija;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,10 +14,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 public class RegisterPlayersActivity extends AppCompatActivity {
@@ -24,6 +28,9 @@ public class RegisterPlayersActivity extends AppCompatActivity {
     Spinner spinnerNumber, spinnerDay, spinnerMonth, spinnerYear;
     EditText editTextName, editTextLastName;
     Button buttonRegisterPlayers;
+    long maxid = 0;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,7 @@ public class RegisterPlayersActivity extends AppCompatActivity {
         for (int i = 1; i < 100; i++){
             numbers.add(i);
         }
-        for(int i = 0; i < 32; i++){
+        for(int i = 1; i < 32; i++){
             days.add(i + "");
         }
 
@@ -66,13 +73,30 @@ public class RegisterPlayersActivity extends AppCompatActivity {
         spinnerYear.setAdapter(adapter_years);
 
 
+        Intent intent2 = getIntent();
+        String team_name = intent2.getStringExtra("TEAM_NAME");
+        DatabaseReference reference = database.getReference().child(team_name);
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    maxid= snapshot.getChildrenCount();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         buttonRegisterPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = getIntent();
-                String team_name = intent.getStringExtra("TEAM_NAME");
 
                 String name = editTextName.getText().toString();
                 String last_name = editTextLastName.getText().toString();
@@ -81,8 +105,13 @@ public class RegisterPlayersActivity extends AppCompatActivity {
                 String month = spinnerMonth.getSelectedItem().toString();
                 String year = spinnerYear.getSelectedItem().toString();
 
-                //Player player = new Player(team_name, name, last_name, day, month, year, number);  //TODO: spremi u bazu objekt
-                Toast.makeText(RegisterPlayersActivity.this, "Igrac registriran", Toast.LENGTH_SHORT).show();
+                String date = year + "-" + month + "-" + day;
+
+                Player player = new Player(team_name, name, last_name, date, number);
+                reference.child("player" + maxid).push().setValue(player);
+
+                //Toast.makeText(RegisterPlayersActivity.this, "Igrac registriran", Toast.LENGTH_SHORT).show();
+
 
                 editTextName.setText("");
                 editTextLastName.setText("");
@@ -92,6 +121,7 @@ public class RegisterPlayersActivity extends AppCompatActivity {
                 spinnerNumber.setSelection(0);
             }
         });
+
 
 
     }

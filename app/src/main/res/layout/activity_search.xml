@@ -8,43 +8,54 @@
     tools:context=".SearchActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextSearchPlayers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
+        android:fontFamily="@font/autour_one"
+        android:gravity="center"
         android:hint="Pretraži igrače"
         android:inputType="textPersonName"
         android:textColor="@color/white"
-        android:textColorHint="@color/grey" />
+        android:textColorHint="@color/grey"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextTextPersonName"
+        android:layout_below="@id/editTextSearchPlayers"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/autour_one"
         android:text="Pretraživanja"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textColor="@color/grey"
+        android:textSize="15sp" />
 
     <View
         android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/textView"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:background="@color/grey" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewSearch"
+        android:id="@+id/recViewSearch1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/view4"
         android:layout_marginTop="10dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewSearch2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view4"
+        android:layout_marginTop="10dp"
+        android:visibility="gone" />
 
 </RelativeLayout>

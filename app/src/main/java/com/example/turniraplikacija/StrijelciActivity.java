@@ -25,12 +25,12 @@ public class StrijelciActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewStrijelci);
 
-        Player player = new Player("ludaci", "teo", "vladusic", "17", "6", "2003", "4");
-        Player player1 = new Player("ludaci", "lucija", "anteric", "17", "6", "2003", "4");
-        Player player2 = new Player("ludaci", "stipe", "vujevic", "17", "6", "2003", "4");
-        Player player3 = new Player("ludaci", "kante", "koronic", "17", "6", "2003", "4");
-        Player player4 = new Player("ludaci", "luka", "lijic", "17", "6", "2003", "4");
-        Player player5 = new Player("ludaci", "ponja", "ponja", "17", "6", "2003", "4");
+        Player player = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
+        Player player1 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
+        Player player2 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
+        Player player3 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
+        Player player4 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
+        Player player5 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
 
         player.setGoals(0);
         player1.setGoals(1);

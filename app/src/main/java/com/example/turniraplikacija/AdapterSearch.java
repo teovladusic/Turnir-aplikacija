@@ -36,6 +36,9 @@ public class AdapterSearch extends RecyclerView.Adapter<AdapterSearch.ViewHolder
         holder.tvNameLastName.setText(NameLastName);
         holder.tvTeam.setText(igrac.getTeam_name());
         holder.tvGoalsNum.setText(igrac.getGoals() + "");
+
+
+
     }
 
     @Override
