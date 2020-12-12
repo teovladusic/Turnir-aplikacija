@@ -73,9 +73,11 @@ public class RegisterPlayersActivity extends AppCompatActivity {
         spinnerYear.setAdapter(adapter_years);
 
 
-        Intent intent2 = getIntent();
-        String team_name = intent2.getStringExtra("TEAM_NAME");
-        DatabaseReference reference = database.getReference().child(team_name);
+        Intent intent = getIntent();
+        String team_name = intent.getStringExtra("TEAM_NAME");
+        DatabaseReference reference = database.getReference().child("ekipe").child(team_name);
+
+
 
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -108,9 +110,7 @@ public class RegisterPlayersActivity extends AppCompatActivity {
                 String date = year + "-" + month + "-" + day;
                 if(!name.equals("") && !last_name.equals("")){
                     Player player = new Player(team_name, name, last_name, date, number);
-                    reference.child("player" + maxid).push().setValue(player);
-
-                    Toast.makeText(RegisterPlayersActivity.this, "Igrac registriran", Toast.LENGTH_SHORT).show();
+                    reference.child("player" + maxid).setValue(player);
 
                     editTextName.setText("");
                     editTextLastName.setText("");

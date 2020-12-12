@@ -25,6 +25,8 @@ public class StrijelciActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewStrijelci);
 
+
+
         Player player = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
         Player player1 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
         Player player2 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");

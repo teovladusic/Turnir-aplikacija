@@ -11,22 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class AdapterRezultati extends RecyclerView.Adapter<AdapterRezultati.ViewHolderRezultati> {
 
-    ArrayList<String> domaci;
-    ArrayList<String> gosti;
-    Context context;
-    ArrayList<String> domaci_goals;
-    ArrayList<String> gosti_goals;
 
-    public AdapterRezultati(ArrayList<String> domaci, ArrayList<String> gosti, Context context, ArrayList<String> domaci_goals, ArrayList<String> gosti_goals) {
-        this.domaci = domaci;
-        this.gosti = gosti;
+    Context context;
+    ArrayList<Game> games;
+    public AdapterRezultati(Context context, ArrayList<Game> games) {
         this.context = context;
-        this.domaci_goals = domaci_goals;
-        this.gosti_goals = gosti_goals;
+        this.games = games;
     }
 
     @NonNull
@@ -39,10 +36,11 @@ public class AdapterRezultati extends RecyclerView.Adapter<AdapterRezultati.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderRezultati holder, int position) {
-        holder.tvTeam1.setText(domaci.get(position));
-        holder.tvTeam2.setText(gosti.get(position));
-        holder.tvTeam1Goals.setText(domaci_goals.get(position));
-        holder.tvTeam2Goals.setText(gosti_goals.get(position));
+        Game game = games.get(position);
+        holder.tvTeam1.setText(game.getTeam1());
+        holder.tvTeam2.setText(game.getTeam2());
+        holder.tvTeam1Goals.setText(game.getTeam1Goals());
+        holder.tvTeam2Goals.setText(game.getTeam2Goals());
         holder.tvStartTime.setVisibility(View.GONE);
         holder.tvTeam1Goals.setVisibility(View.VISIBLE);
         holder.tvTeam2Goals.setVisibility(View.VISIBLE);
@@ -61,7 +59,7 @@ public class AdapterRezultati extends RecyclerView.Adapter<AdapterRezultati.View
 
     @Override
     public int getItemCount() {
-        return domaci.size();
+        return games.size();
     }
 
 

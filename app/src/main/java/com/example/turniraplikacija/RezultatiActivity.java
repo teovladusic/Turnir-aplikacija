@@ -1,5 +1,7 @@
 package com.example.turniraplikacija;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,12 +10,23 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class RezultatiActivity extends AppCompatActivity {
     RecyclerView recyclerView;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    long maxid = 0;
+    Game game1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,29 +37,37 @@ public class RezultatiActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        ArrayList<String> domaci = new ArrayList<>();
-        domaci.add("hajduk");
-        domaci.add("dinamo");
-        domaci.add("slaven");
+        DatabaseReference reference = database.getReference().child("utakmice").child("odigrane");
 
-        ArrayList<String> gosti = new ArrayList<>();
-        gosti.add("inter");
-        gosti.add("reka");
-        gosti.add("osijek");
 
-        ArrayList<String> domaci_goals = new ArrayList<>();
-        domaci_goals.add("1");
-        domaci_goals.add("2");
-        domaci_goals.add("3");
+        ArrayList<Game> games = new ArrayList<>();
 
-        ArrayList<String> gosti_goals = new ArrayList<>();
-        gosti_goals.add("1");
-        gosti_goals.add("2");
-        gosti_goals.add("3");
 
-        AdapterRezultati adapter = new AdapterRezultati(domaci, gosti, this, domaci_goals, gosti_goals);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                try {
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        Game game = dataSnapshot.getValue(Game.class);
+                        games.add(game);
+                    }
+                    AdapterRezultati adapter = new AdapterRezultati(RezultatiActivity.this, games);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(RezultatiActivity.this));
+                }catch (Throwable e){
+                    Toast.makeText(RezultatiActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
 
     }
 

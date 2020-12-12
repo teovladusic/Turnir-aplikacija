@@ -46,23 +46,27 @@ public class PrijaviSeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String team_name = editTextTeamName.getText().toString();
-                reference.child(team_name).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        if(snapshot.getValue() != null){
-                            Toast.makeText(PrijaviSeActivity.this, "Tim je vec registriran ", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Intent intent = new Intent(PrijaviSeActivity.this, RegisterPlayersActivity.class);
-                            intent.putExtra("TEAM_NAME", team_name);
-                            startActivity(intent);
+                if(!team_name.equals("")) {
+                    reference.child("ekipe").child(team_name).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            if (snapshot.getValue() != null) {
+                                Toast.makeText(PrijaviSeActivity.this, "Tim je vec registriran ", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(PrijaviSeActivity.this, RegisterPlayersActivity.class);
+                                intent.putExtra("TEAM_NAME", team_name);
+                                startActivity(intent);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+                }else{
+                    Toast.makeText(PrijaviSeActivity.this, "Unesi ime ekipe", Toast.LENGTH_SHORT).show();
+                }
                 
             }
               
