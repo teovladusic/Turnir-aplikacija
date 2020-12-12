@@ -15,16 +15,12 @@ import java.util.ArrayList;
 
 public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHolderRaspored> {
 
-    ArrayList<String> domaci;
-    ArrayList<String> gosti;
     Context context;
-    ArrayList<String> start_time;
+    ArrayList<Game> games;
 
-    public AdapterRaspored(ArrayList<String> domaci, ArrayList<String> gosti, Context context, ArrayList<String> start_time) {
-        this.domaci = domaci;
-        this.gosti = gosti;
+    public AdapterRaspored(Context context, ArrayList<Game> games) {
         this.context = context;
-        this.start_time = start_time;
+        this.games = games;
     }
 
     @NonNull
@@ -37,12 +33,13 @@ public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderRaspored holder, int position) {
-        holder.tvTeam1.setText(domaci.get(position));
-        holder.tvTeam2.setText(gosti.get(position));
+        Game game = games.get(position);
+        holder.tvTeam1.setText(game.getTeam1());
+        holder.tvTeam2.setText(game.getTeam2());
         holder.tvTeam1Goals.setVisibility(View.GONE);
         holder.tvTeam2Goals.setVisibility(View.GONE);
         holder.tvStartTime.setVisibility(View.VISIBLE);
-        holder.tvStartTime.setText(start_time.get(position));
+        holder.tvStartTime.setText(game.getTime());
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +55,7 @@ public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHo
 
     @Override
     public int getItemCount() {
-        return domaci.size();
+        return games.size();
     }
 
 

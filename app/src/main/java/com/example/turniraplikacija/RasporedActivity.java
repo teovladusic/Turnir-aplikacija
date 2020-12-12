@@ -1,5 +1,6 @@
 package com.example.turniraplikacija;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,14 +10,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class RasporedActivity extends AppCompatActivity {
 
-    TextView tvTeam1, tvTeam2, tvTeam1Goals, tvTeam2Goals, tvStartTime;
     RecyclerView recViewRaspored;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,24 +35,37 @@ public class RasporedActivity extends AppCompatActivity {
 
         recViewRaspored = findViewById(R.id.recViewRaspored);
 
-        ArrayList<String> domaci = new ArrayList<>();
-        domaci.add("hajduk");
-        domaci.add("dinamo");
-        domaci.add("slaven");
 
-        ArrayList<String> gosti = new ArrayList<>();
-        gosti.add("inter");
-        gosti.add("reka");
-        gosti.add("osijek");
+        ArrayList<Game> games = new ArrayList<>();
+        DatabaseReference reference = database.getReference().child("utakmice").child("neodigrane");
 
-        ArrayList<String> start_time = new ArrayList<>();
-        start_time.add("14:00");
-        start_time.add("15:00");
-        start_time.add("16:00");
 
-        AdapterRaspored adapterRaspored = new AdapterRaspored(domaci, gosti, this, start_time);
-        recViewRaspored.setAdapter(adapterRaspored);
-        recViewRaspored.setLayoutManager(new LinearLayoutManager(this));
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                try {
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        Game game = dataSnapshot.getValue(Game.class);
+                        Toast.makeText(RasporedActivity.this, game.getTeam1(), Toast.LENGTH_SHORT).show();
+                        games.add(game);
+                    }
+                    AdapterRaspored adapter = new AdapterRaspored(RasporedActivity.this, games);
+                    recViewRaspored.setAdapter(adapter);
+                    recViewRaspored.setLayoutManager(new LinearLayoutManager(RasporedActivity.this));
+                }catch (Throwable e){
+                    Toast.makeText(RasporedActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
 
     }
 

@@ -8,6 +8,7 @@ public class Game {
     private String team1Goals;
     private String team2Goals;
 
+
     public Game() {
     }
 
@@ -19,6 +20,8 @@ public class Game {
         this.team1Goals = team1Goals;
         this.team2Goals = team2Goals;
     }
+
+
 
     public String getTeam1() {
         return team1;

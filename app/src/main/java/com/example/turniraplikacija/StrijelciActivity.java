@@ -1,5 +1,6 @@
 package com.example.turniraplikacija;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,11 +10,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class StrijelciActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
 
 
     @Override
@@ -23,35 +34,46 @@ public class StrijelciActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Turnir");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewStrijelci);
-
-
-
-        Player player = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
-        Player player1 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
-        Player player2 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
-        Player player3 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
-        Player player4 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
-        Player player5 = new Player("ludaci", "teoooo", "vladusić", "2003-06-17", "4");
-
-        player.setGoals(0);
-        player1.setGoals(1);
-        player2.setGoals(2);
-        player3.setGoals(3);
-        player4.setGoals(4);
-        player5.setGoals(5);
-
+        recyclerView = findViewById(R.id.recyclerViewStrijelci);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("ekipe");
         ArrayList<Player> players = new ArrayList<>();
-        players.add(player);
-        players.add(player1);
-        players.add(player2);
-        players.add(player3);
-        players.add(player4);
-        players.add(player5);
 
-        AdapterStrijelci adapterStrijelci = new AdapterStrijelci(this, players);
-        recyclerView.setAdapter(adapterStrijelci);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                try {
+                    int maxGoals = 0;
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                            Player player = dataSnapshot1.getValue(Player.class);
+                            if(player.getGoals() > maxGoals){
+                                maxGoals = player.getGoals();
+                                players.add(player);
+                            }
+
+                        }
+                    }
+
+                    Collections.reverse(players);
+                    AdapterStrijelci adapter = new AdapterStrijelci(StrijelciActivity.this, players);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(StrijelciActivity.this));
+                }catch (Throwable e){
+                    Toast.makeText(StrijelciActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        //AdapterStrijelci adapterStrijelci = new AdapterStrijelci(this, players);
+        //recyclerView.setAdapter(adapterStrijelci);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     //Back navigation bar button

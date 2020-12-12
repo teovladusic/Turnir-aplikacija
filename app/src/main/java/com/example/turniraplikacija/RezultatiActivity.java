@@ -25,8 +25,6 @@ import java.util.Objects;
 public class RezultatiActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    long maxid = 0;
-    Game game1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class RezultatiActivity extends AppCompatActivity {
         ArrayList<Game> games = new ArrayList<>();
 
 
-        
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {

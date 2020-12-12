@@ -40,43 +40,9 @@ public class RegisterPlayersActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Turnir");
         assignViews();
 
-
-        ArrayList<String> days = new ArrayList<>();
-        ArrayList<Integer> numbers = new ArrayList<>();
-        ArrayList<String> months = new ArrayList<>();
-        ArrayList<String> years = new ArrayList<>();
-
-        for (int i = 1; i < 100; i++){
-            numbers.add(i);
-        }
-        for(int i = 1; i < 32; i++){
-            days.add(i + "");
-        }
-
-        for(int i = 1; i <13; i++){
-            months.add(i + "");
-        }
-
-
-        for(int i = 1960; i < 2010; i++){
-            years.add(i + "");
-        }
-
-        ArrayAdapter<String> adapter_days = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, days);
-        ArrayAdapter<String> adapter_months = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, months);
-        ArrayAdapter<String> adapter_years = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
-        ArrayAdapter<Integer> adapter_numbers = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, numbers);
-
-        spinnerNumber.setAdapter(adapter_numbers);
-        spinnerDay.setAdapter(adapter_days);
-        spinnerMonth.setAdapter(adapter_months);
-        spinnerYear.setAdapter(adapter_years);
-
-
         Intent intent = getIntent();
         String team_name = intent.getStringExtra("TEAM_NAME");
         DatabaseReference reference = database.getReference().child("ekipe").child(team_name);
-
 
 
 
@@ -138,6 +104,37 @@ public class RegisterPlayersActivity extends AppCompatActivity {
         spinnerMonth = findViewById(R.id.spinnerMonth);
         spinnerDay = findViewById(R.id.spinnerDay);
         spinnerYear = findViewById(R.id.spinnerYear);
+
+        ArrayList<String> days = new ArrayList<>();
+        ArrayList<Integer> numbers = new ArrayList<>();
+        ArrayList<String> months = new ArrayList<>();
+        ArrayList<String> years = new ArrayList<>();
+
+        for (int i = 1; i < 100; i++){
+            numbers.add(i);
+        }
+        for(int i = 1; i < 32; i++){
+            days.add(i + "");
+        }
+
+        for(int i = 1; i <13; i++){
+            months.add(i + "");
+        }
+
+
+        for(int i = 1960; i < 2010; i++){
+            years.add(i + "");
+        }
+
+        ArrayAdapter<String> adapter_days = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, days);
+        ArrayAdapter<String> adapter_months = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, months);
+        ArrayAdapter<String> adapter_years = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        ArrayAdapter<Integer> adapter_numbers = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, numbers);
+
+        spinnerNumber.setAdapter(adapter_numbers);
+        spinnerDay.setAdapter(adapter_days);
+        spinnerMonth.setAdapter(adapter_months);
+        spinnerYear.setAdapter(adapter_years);
 
 
     }

@@ -14,6 +14,8 @@ public class Player {
     private Integer red_cards = 0;
     private Integer number_of_games = 0;
 
+    public Player() {
+    }
 
     public Player(String team_name, String name, String last_name, String date, String number) {
         this.team_name = team_name;
@@ -22,6 +24,7 @@ public class Player {
         this.date = date;
         this.number = number;
     }
+
 
     public void setTeam_name(String team_name) {
         this.team_name = team_name;
@@ -74,7 +77,6 @@ public class Player {
     public void setNumber_of_games(Integer number_of_games) {
         this.number_of_games = number_of_games;
     }
-
 
 
     public String getName() {

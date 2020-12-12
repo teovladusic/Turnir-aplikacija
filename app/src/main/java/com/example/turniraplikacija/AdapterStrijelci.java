@@ -1,7 +1,6 @@
 package com.example.turniraplikacija;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AdapterStrijelci extends RecyclerView.Adapter<AdapterStrijelci.ViewHolderStrijelci>{
 
     Context context;
-    ArrayList<Player> player;
+    ArrayList<Player> players;
 
     public AdapterStrijelci(Context context, ArrayList<Player> player) {
         this.context = context;
-        this.player = player;
+        this.players = player;
     }
 
     @NonNull
@@ -33,17 +31,16 @@ public class AdapterStrijelci extends RecyclerView.Adapter<AdapterStrijelci.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderStrijelci holder, int position) {
-        String scorer = player.get(position).getName() + " " + player.get(position).getLast_name() + " (" + player.get(position).getTeam_name() + ")";
-        Integer goal = player.get(position).getGoals();
-        holder.tvStrijelac.setText(scorer);
-        holder.tvGoals.setText(goal + "");
+        Player player = players.get(position);
+        holder.tvStrijelac.setText(player.getName() + " " + player.getLast_name());
+        holder.tvGoals.setText(player.getGoals() + "");
         holder.tvRedniBroj.setText((position + 1) + ".");
 
     }
 
     @Override
     public int getItemCount() {
-        return player.size();
+        return players.size();
     }
 
     public class ViewHolderStrijelci extends RecyclerView.ViewHolder{
