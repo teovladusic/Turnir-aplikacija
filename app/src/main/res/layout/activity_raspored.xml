@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:textAlignment="center"
+    tools:context=".RasporedActivity">
+
+    <Spinner
+        android:id="@+id/spinnerCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:textAlignment="center"
+        android:theme="@style/customSpinnerDialog"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/ubuntu"
+        android:gravity="center_horizontal"
+        android:text="..."
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/horizontalView"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/tvDate"
+        android:layout_marginTop="2dp"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/tvNoGames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nažalost, za odabrani dan nema utakmica."
+        android:textColor="@color/white"
+        android:layout_below="@id/horizontalView"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/ubuntu"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewRaspored"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/horizontalView" />
+
+    <ProgressBar
+        android:id="@+id/progressBarRaspored"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/white" />
+
+</RelativeLayout>
