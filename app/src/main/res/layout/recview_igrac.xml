@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/autour_one"
+        android:fontFamily="@font/ubuntu"
         android:text="Ime i prezime"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,10 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/autour_one"
+        android:fontFamily="@font/ubuntu"
         android:text="Tim"
-        android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textColor="@color/grey"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNameLastName" />
 
@@ -38,10 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:fontFamily="@font/autour_one"
+        android:fontFamily="@font/ubuntu"
         android:text="Broj golova"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,10 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/autour_one"
+        android:fontFamily="@font/ubuntu"
         android:text="0"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="@+id/tvNumGoals"
         app:layout_constraintStart_toStartOf="@+id/tvNumGoals"
         app:layout_constraintTop_toBottomOf="@+id/tvNumGoals" />

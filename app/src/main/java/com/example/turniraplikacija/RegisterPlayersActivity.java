@@ -28,7 +28,7 @@ public class RegisterPlayersActivity extends AppCompatActivity {
     Spinner spinnerNumber, spinnerDay, spinnerMonth, spinnerYear;
     EditText editTextName, editTextLastName;
     Button buttonRegisterPlayers;
-    long maxid = 0;
+    long maxID = 0;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
@@ -37,12 +37,12 @@ public class RegisterPlayersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_players);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Turnir");
+        getSupportActionBar().setTitle("Prijavi se");
         assignViews();
 
         Intent intent = getIntent();
         String team_name = intent.getStringExtra("TEAM_NAME");
-        DatabaseReference reference = database.getReference().child("ekipe").child(team_name);
+        DatabaseReference reference = database.getReference().child("players");
 
 
 
@@ -50,7 +50,7 @@ public class RegisterPlayersActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    maxid= snapshot.getChildrenCount();
+                    maxID = snapshot.getChildrenCount();
                 }
             }
 
@@ -75,8 +75,9 @@ public class RegisterPlayersActivity extends AppCompatActivity {
 
                 String date = year + "-" + month + "-" + day;
                 if(!name.equals("") && !last_name.equals("")){
-                    Player player = new Player(team_name, name, last_name, date, number);
-                    reference.child("player" + maxid).setValue(player);
+                    Player player = new Player(team_name, name, last_name, date, number, maxID);
+                    reference.child("" + maxID).setValue(player);
+
 
                     editTextName.setText("");
                     editTextLastName.setText("");
@@ -114,11 +115,20 @@ public class RegisterPlayersActivity extends AppCompatActivity {
             numbers.add(i);
         }
         for(int i = 1; i < 32; i++){
-            days.add(i + "");
+            if(i < 10){
+                days.add("0" + i);
+            }else{
+                days.add(i + "");
+            }
+
         }
 
         for(int i = 1; i <13; i++){
-            months.add(i + "");
+            if(i < 10){
+                months.add("0" + i);
+            }else{
+                months.add(i + "");
+            }
         }
 
 
@@ -139,12 +149,19 @@ public class RegisterPlayersActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(RegisterPlayersActivity.this, PrijaviSeActivity.class);
+        startActivity(intent);
+    }
+
     //Back navigation bar button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                Intent intent = new Intent(RegisterPlayersActivity.this, PrijaviSeActivity.class);
+                startActivity(intent);
                 return true;
         }
 

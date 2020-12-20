@@ -17,7 +17,6 @@
         <activity android:name=".StrijelciActivity" />
         <activity android:name=".RasporedActivity" />
         <activity android:name=".PrikazUtakmiceActivity" />
-        <activity android:name=".RezultatiActivity" />
         <activity android:name=".RegisterPlayersActivity" />
         <activity android:name=".PrijaviSeActivity" />
         <activity android:name=".MainActivity">

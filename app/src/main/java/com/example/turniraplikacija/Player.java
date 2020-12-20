@@ -1,9 +1,9 @@
 package com.example.turniraplikacija;
 
-import java.util.Date;
 
 public class Player {
 
+    private long id;
     private String team_name;
     private String name;
     private String last_name;
@@ -17,14 +17,24 @@ public class Player {
     public Player() {
     }
 
-    public Player(String team_name, String name, String last_name, String date, String number) {
+
+
+    public Player(String team_name, String name, String last_name, String date, String number, long id) {
         this.team_name = team_name;
         this.name = name;
         this.last_name = last_name;
         this.date = date;
         this.number = number;
+        this.id = id;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setTeam_name(String team_name) {
         this.team_name = team_name;
@@ -102,4 +112,7 @@ public class Player {
     public void addGoals(Integer goals){
         this.goals = this.goals + goals;
     }
+
+
+
 }

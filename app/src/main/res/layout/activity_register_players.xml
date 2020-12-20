@@ -8,159 +8,160 @@
     tools:context=".RegisterPlayersActivity">
 
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
+        app:cardBackgroundColor="@color/dark_grey"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
 
-
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="fill"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="8dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="50dp">
+            android:layout_marginTop="30dp">
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
+            <EditText
+                android:id="@+id/editTextName"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/ubuntu"
+                android:hint="Ime"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/editTextName"
-                    android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/editTextLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editTextName"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/ubuntu"
+                android:hint="Prezime"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editTextLastName"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp">
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/ubuntu"
+                    android:text="Dan"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@+id/spinnerDay"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/ubuntu"
-                    android:hint="Ime"
-                    android:textSize="20sp" />
+                    android:spinnerMode="dialog"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-                <EditText
-                    android:id="@+id/editTextLastName"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/editTextName"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
                     android:fontFamily="@font/ubuntu"
-                    android:hint="Prezime"
-                    android:textSize="20sp" />
+                    android:text="Mjesec"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@id/spinnerMonth"
+                    app:layout_constraintStart_toStartOf="@id/spinnerMonth"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
+                <Spinner
+                    android:id="@+id/spinnerMonth"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/editTextLastName"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintEnd_toStartOf="@+id/spinnerYear"
+                    app:layout_constraintStart_toEndOf="@id/spinnerDay"
+                    app:layout_constraintTop_toBottomOf="@id/textView5" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu"
+                    android:text="Godina"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@id/spinnerYear"
+                    app:layout_constraintStart_toStartOf="@id/spinnerYear"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinnerYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView5" />
+
+                <TextView
+                    android:id="@+id/textViewNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="40dp"
-                    android:layout_marginEnd="10dp">
+                    android:fontFamily="@font/ubuntu"
+                    android:text="Broj"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spinnerDay" />
 
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu"
-                        android:text="Dan"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="@+id/spinnerDay"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Spinner
-                        android:id="@+id/spinnerDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:spinnerMode="dialog"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu"
-                        android:text="Mjesec"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="@id/spinnerMonth"
-                        app:layout_constraintStart_toStartOf="@id/spinnerMonth"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Spinner
-                        android:id="@+id/spinnerMonth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:spinnerMode="dialog"
-                        app:layout_constraintEnd_toStartOf="@+id/spinnerYear"
-                        app:layout_constraintStart_toEndOf="@id/spinnerDay"
-                        app:layout_constraintTop_toBottomOf="@id/textView5" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu"
-                        android:text="Godina"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="@id/spinnerYear"
-                        app:layout_constraintStart_toStartOf="@id/spinnerYear"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Spinner
-                        android:id="@+id/spinnerYear"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:spinnerMode="dialog"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textView5" />
-
-                    <TextView
-                        android:id="@+id/textViewNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="40dp"
-                        android:fontFamily="@font/ubuntu"
-                        android:text="Broj"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/spinnerDay" />
-
-                    <Spinner
-                        android:id="@+id/spinnerNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:spinnerMode="dialog"
-                        app:layout_constraintBottom_toBottomOf="@+id/textViewNumber"
-                        app:layout_constraintStart_toEndOf="@+id/textViewNumber"
-                        app:layout_constraintTop_toTopOf="@+id/textViewNumber" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <Button
-                    android:id="@+id/buttonRegisterPlayer"
-                    android:layout_width="match_parent"
+                <Spinner
+                    android:id="@+id/spinnerNumber"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="150dp"
-                    android:layout_marginEnd="20dp"
-                    android:elevation="8dp"
-                    android:fontFamily="@font/autour_one"
-                    android:text="Registriraj igraca"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+                    android:spinnerMode="dialog"
+                    app:layout_constraintBottom_toBottomOf="@+id/textViewNumber"
+                    app:layout_constraintStart_toEndOf="@+id/textViewNumber"
+                    app:layout_constraintTop_toTopOf="@+id/textViewNumber" />
 
-        </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/buttonRegisterPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/constraintLayout"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="8dp"
+                android:fontFamily="@font/autour_one"
+                android:text="Registriraj igraca"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

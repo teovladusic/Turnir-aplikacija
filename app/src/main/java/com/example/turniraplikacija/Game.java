@@ -1,5 +1,7 @@
 package com.example.turniraplikacija;
 
+import java.util.ArrayList;
+
 public class Game {
     private String team1;
     private String team2;
@@ -7,21 +9,23 @@ public class Game {
     private String time;
     private String team1Goals;
     private String team2Goals;
+    private ArrayList<GameEvent> GameEvents;
+    private boolean isPlayed = false;
 
 
     public Game() {
     }
 
-    public Game(String team1, String team2, String date, String time, String team1Goals, String team2Goals) {
+
+    public Game(String team1, String team2, String date, String time, String team1Goals, String team2Goals, ArrayList<GameEvent> gameEvents) {
         this.team1 = team1;
         this.team2 = team2;
         this.date = date;
         this.time = time;
         this.team1Goals = team1Goals;
         this.team2Goals = team2Goals;
+        GameEvents = gameEvents;
     }
-
-
 
     public String getTeam1() {
         return team1;
@@ -71,5 +75,20 @@ public class Game {
         this.team2Goals = team2Goals;
     }
 
+    public ArrayList<GameEvent> getGameEvents() {
+        return GameEvents;
+    }
 
+    public void setGameEvents(ArrayList<GameEvent> gameEvents) {
+        GameEvents = gameEvents;
+    }
+
+    public boolean isPlayed() {
+        return isPlayed;
+    }
+
+    public void setPlayed(boolean played) {
+        isPlayed = played;
+    }
 }
+

@@ -8,16 +8,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
@@ -25,6 +27,7 @@ import java.util.Objects;
 public class StrijelciActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    ProgressBar progressBar;
 
 
     @Override
@@ -32,36 +35,41 @@ public class StrijelciActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_strijelci);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Turnir");
+        getSupportActionBar().setTitle("Najbolji strijelci");
+
+        progressBar = findViewById(R.id.progressBarStrijelci);
+
 
         recyclerView = findViewById(R.id.recyclerViewStrijelci);
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("ekipe");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("players");
         ArrayList<Player> players = new ArrayList<>();
+        progressBar.setVisibility(View.VISIBLE);
 
-        reference.addValueEventListener(new ValueEventListener() {
+
+
+        Query query = reference.orderByChild("goals").limitToLast(10);
+
+
+        AdapterStrijelci adapterStrijelci = new AdapterStrijelci(this, players);
+        recyclerView.setAdapter(adapterStrijelci);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                try {
-                    int maxGoals = 0;
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                            Player player = dataSnapshot1.getValue(Player.class);
-                            if(player.getGoals() > maxGoals){
-                                maxGoals = player.getGoals();
-                                players.add(player);
-                            }
-
-                        }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                players.clear();
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        progressBar.setVisibility(View.VISIBLE);
+                        Player player = dataSnapshot.getValue(Player.class);
+                        players.add(player);
                     }
 
-                    Collections.reverse(players);
-                    AdapterStrijelci adapter = new AdapterStrijelci(StrijelciActivity.this, players);
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(StrijelciActivity.this));
-                }catch (Throwable e){
-                    Toast.makeText(StrijelciActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }
+                Collections.reverse(players);
+                adapterStrijelci.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -69,11 +77,25 @@ public class StrijelciActivity extends AppCompatActivity {
             }
         });
 
+        boolean a = true;
+        try {
+            a = isConnected();
+        } catch (InterruptedException e) {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        Toast.makeText(this, a + "", Toast.LENGTH_SHORT).show();
 
 
-        //AdapterStrijelci adapterStrijelci = new AdapterStrijelci(this, players);
-        //recyclerView.setAdapter(adapterStrijelci);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+    }
+
+    public boolean isConnected() throws InterruptedException, IOException {
+        String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 
     //Back navigation bar button

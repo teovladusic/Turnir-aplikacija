@@ -7,30 +7,37 @@
     android:background="@color/dark_grey"
     tools:context=".SearchActivity">
 
-    <EditText
-        android:id="@+id/editTextSearchPlayers"
+    <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:fontFamily="@font/autour_one"
+        android:background="@color/dark_grey"
+        android:clickable="true"
+        android:closeIcon="@drawable/ic_baseline_close_24"
+        android:contextClickable="true"
+        android:elevation="15dp"
+        android:fontFamily="@font/ubuntu"
         android:gravity="center"
-        android:hint="Pretraži igrače"
         android:inputType="textPersonName"
+        android:longClickable="true"
+        android:searchHintIcon="@drawable/ic_search_icon_grey"
+        android:searchIcon="@drawable/ic_baseline_search_white"
         android:textColor="@color/white"
-        android:textColorHint="@color/grey"
-        android:textSize="22sp" />
+        android:textSize="25sp"
+        android:iconifiedByDefault="false"
+        app:iconifiedByDefault="false" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextSearchPlayers"
+        android:layout_below="@id/searchView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/autour_one"
+        android:fontFamily="@font/ubuntu"
         android:text="Pretraživanja"
         android:textColor="@color/grey"
         android:textSize="15sp" />
@@ -44,18 +51,20 @@
         android:background="@color/grey" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewSearch1"
+        android:id="@+id/recViewSearch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/view4"
         android:layout_marginTop="10dp" />
+    <ProgressBar
+        android:id="@+id/progressBarSearch"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/white" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewSearch2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/view4"
-        android:layout_marginTop="10dp"
-        android:visibility="gone" />
+
+
 
 </RelativeLayout>

@@ -27,7 +27,7 @@ public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHo
     @Override
     public ViewHolderRaspored onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.recview_rezultati_and_raspored, parent, false);
+        View view = inflater.inflate(R.layout.recview_raspored, parent, false);
         return new ViewHolderRaspored(view);
     }
 
@@ -36,16 +36,29 @@ public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHo
         Game game = games.get(position);
         holder.tvTeam1.setText(game.getTeam1());
         holder.tvTeam2.setText(game.getTeam2());
-        holder.tvTeam1Goals.setVisibility(View.GONE);
-        holder.tvTeam2Goals.setVisibility(View.GONE);
-        holder.tvStartTime.setVisibility(View.VISIBLE);
-        holder.tvStartTime.setText(game.getTime());
+
+        if(game.isPlayed()){
+            holder.tvStartTime.setVisibility(View.GONE);
+            holder.tvTeam1Goals.setVisibility(View.VISIBLE);
+            holder.tvTeam2Goals.setVisibility(View.VISIBLE);
+            holder.tvTeam1Goals.setText(game.getTeam1Goals());
+            holder.tvTeam2Goals.setText(game.getTeam2Goals());
+        }else{
+            holder.tvTeam1Goals.setVisibility(View.GONE);
+            holder.tvTeam2Goals.setVisibility(View.GONE);
+            holder.tvStartTime.setVisibility(View.VISIBLE);
+            holder.tvStartTime.setText(game.getTime());
+        }
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PrikazUtakmiceActivity.class);
-                intent.putExtra("POSITION", position);
+
+                intent.putExtra("team1",game.getTeam1());
+                intent.putExtra("team2",game.getTeam2());
+                intent.putExtra("team1",game.getTeam1());
+
                 context.startActivity(intent);
             }
         });
