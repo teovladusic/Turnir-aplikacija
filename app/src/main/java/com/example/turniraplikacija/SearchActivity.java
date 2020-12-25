@@ -53,7 +53,6 @@ public class SearchActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("players");
         searchView = findViewById(R.id.searchView);
         progressBarSearch = findViewById(R.id.progressBarSearch);
-        searchView.setQueryHint("Pretraži igrače");
 
         ArrayList<Player> filteredList = new ArrayList<>();
 

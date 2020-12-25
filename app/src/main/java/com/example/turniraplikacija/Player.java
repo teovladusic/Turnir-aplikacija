@@ -1,7 +1,10 @@
 package com.example.turniraplikacija;
 
 
-public class Player {
+import java.io.Serializable;
+
+@SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
+public class Player implements Serializable {
 
     private long id;
     private String team_name;

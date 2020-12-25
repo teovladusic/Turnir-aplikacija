@@ -1,8 +1,11 @@
 package com.example.turniraplikacija;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Game {
+
+@SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
+public class Game implements Serializable {
     private String team1;
     private String team2;
     private String date;

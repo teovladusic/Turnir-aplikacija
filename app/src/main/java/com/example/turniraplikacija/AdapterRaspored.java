@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -54,12 +55,12 @@ public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PrikazUtakmiceActivity.class);
-
-                intent.putExtra("team1",game.getTeam1());
-                intent.putExtra("team2",game.getTeam2());
-                intent.putExtra("team1",game.getTeam1());
-
-                context.startActivity(intent);
+                try{
+                    intent.putExtra("game", game);
+                    context.startActivity(intent);
+                }catch (Exception e){
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -82,8 +83,8 @@ public class AdapterRaspored extends RecyclerView.Adapter<AdapterRaspored.ViewHo
             super(itemView);
             constraintLayout = itemView.findViewById(R.id.constraintLayout);
 
-            tvTeam1 = itemView.findViewById(R.id.tvTeam1);
-            tvTeam2 = itemView.findViewById(R.id.tvTeam2);
+            tvTeam1 = itemView.findViewById(R.id.tvPlayerTeam1);
+            tvTeam2 = itemView.findViewById(R.id.tvPlayerTeam2);
             tvTeam1Goals = itemView.findViewById(R.id.tvTeam1Goals);
             tvTeam2Goals = itemView.findViewById(R.id.tvTeam2Goals);
             tvStartTime = itemView.findViewById(R.id.tvStartTime);

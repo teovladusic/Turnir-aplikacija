@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    //TODO: NAPRAVI U ADMIN APLIKACIJI DODAVANJE EVENTA
+    //TODO: PRIKAZ IGRACA
 
     CardView cardViewPrijaviSe;
-    CardView cardViewObavijesti;
+    CardView cardViewShowTeams;
     CardView cardViewRaspored;
     CardView cardViewTablica;
     CardView cardViewStrijelci;
@@ -55,15 +57,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //start ObavijestiActivity on cardViewObavijesti click
+        //start RasporedActivity on cardViewRaspored click
 
-        cardViewObavijesti.setOnClickListener(new View.OnClickListener() {
+        cardViewShowTeams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(MainActivity.this, ObavijestiActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, ShowTeamsActivity.class);
+                startActivity(intent);
             }
         });
+
 
 
         //start PrijaviSeActivity on cardViewPrijaviSe click
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void assignViews(){
         cardViewPrijaviSe = findViewById(R.id.cardViewPrijaviSe);
         cardViewRaspored = findViewById(R.id.cardViewRaspored);
-        cardViewObavijesti = findViewById(R.id.cardViewObavijesti);
+        cardViewShowTeams = findViewById(R.id.cardViewShowTeams);
         cardViewTablica = findViewById(R.id.cardViewTablica);
         cardViewStrijelci = findViewById(R.id.cardViewStrijelci);
         cardViewSearch = findViewById(R.id.cardViewSearch);

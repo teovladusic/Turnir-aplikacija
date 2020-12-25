@@ -1,24 +1,26 @@
 package com.example.turniraplikacija;
 
-public class GameEvent {
-    private String scorerID;
+import java.io.Serializable;
+
+public class GameEvent implements Serializable {
+    private long scorerID;
     private String event;   //goal, card..
     private String team;
 
     public GameEvent() {
     }
 
-    public GameEvent(String scorerID, String event, String team) {
+    public GameEvent(long scorerID, String event, String team) {
         this.scorerID = scorerID;
         this.event = event;
         this.team = team;
     }
 
-    public String getScorerID() {
+    public long getScorerID() {
         return scorerID;
     }
 
-    public void setScorerID(String scorerID) {
+    public void setScorerID(long scorerID) {
         this.scorerID = scorerID;
     }
 

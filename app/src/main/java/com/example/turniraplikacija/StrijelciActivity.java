@@ -77,26 +77,9 @@ public class StrijelciActivity extends AppCompatActivity {
             }
         });
 
-        boolean a = true;
-        try {
-            a = isConnected();
-        } catch (InterruptedException e) {
-            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-        Toast.makeText(this, a + "", Toast.LENGTH_SHORT).show();
-
-
-
 
     }
 
-    public boolean isConnected() throws InterruptedException, IOException {
-        String command = "ping -c 1 google.com";
-        return Runtime.getRuntime().exec(command).waitFor() == 0;
-    }
 
     //Back navigation bar button
     @Override

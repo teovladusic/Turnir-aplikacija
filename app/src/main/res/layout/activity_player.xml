@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayerActivity"
+    android:background="@color/black">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/dark_grey"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/player"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/textVName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ime Prezime"
+                android:textColor="@color/white"
+                android:layout_below="@id/imgView"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/ubuntu"/>
+
+            <TextView
+                android:id="@+id/tvTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textVName"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/ubuntu"
+                android:text="Ekipa"
+                android:textColor="@color/grey"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/dark_grey"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvBroj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Broj:"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/tvNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvBroj"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/tvBroj"
+                android:text="4"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tvPlayerGoals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Golovi:"
+                android:layout_below="@id/tvBroj"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/tvGolovi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvPlayerGoals"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/tvPlayerGoals"
+                android:text="7"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <TextView
+                android:id="@+id/tvYellowCards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Žuti kartoni:"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@id/tvGolovi"/>
+
+            <TextView
+                android:id="@+id/tvYellowCardsNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvYellowCards"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/tvYellowCards"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <TextView
+                android:id="@+id/tvRedCards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crveni kartoni:"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@id/tvYellowCards"/>
+
+            <TextView
+                android:id="@+id/tvRedCardsNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvRedCards"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/tvRedCards"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <TextView
+                android:id="@+id/tvBrojNastupa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Broj nastupa:"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@id/tvRedCards"/>
+
+            <TextView
+                android:id="@+id/tvNumberOfGames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvBrojNastupa"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/tvBrojNastupa"
+                android:text="10"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+            <TextView
+                android:id="@+id/tvDatumRodenja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Datum rođenja:"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/ubuntu"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@id/tvBrojNastupa"/>
+
+            <TextView
+                android:id="@+id/tvBirthDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvDatumRodenja"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toEndOf="@id/tvDatumRodenja"
+                android:text="17.06.2003"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

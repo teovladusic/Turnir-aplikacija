@@ -24,6 +24,12 @@
     <style name="customSpinnerDialog">
         <item name="android:background">@color/dark_grey</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
+    <style name="customHintSearch">
+        <item name="android:textColorHint">@color/white</item>
     </style>
 
 </resources>
