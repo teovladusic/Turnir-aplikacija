@@ -138,17 +138,15 @@ public class AdapterPoluvrijeme extends RecyclerView.Adapter<AdapterPoluvrijeme.
 
     }
 
-    private void findPlayerByID(long player_id){
-
-
-
-
-    }
-
 
     @Override
     public int getItemCount() {
-        return game.getGameEvents().size();
+        if(game.getGameEvents() == null){
+            return 0;
+        }else{
+            return game.getGameEvents().size();
+        }
+
     }
 
     public class ViewHolderPoluvrijeme extends RecyclerView.ViewHolder{

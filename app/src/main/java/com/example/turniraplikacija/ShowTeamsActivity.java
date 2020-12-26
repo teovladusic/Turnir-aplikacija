@@ -1,6 +1,7 @@
 package com.example.turniraplikacija;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,8 +32,10 @@ import java.util.Objects;
 
 public class ShowTeamsActivity extends AppCompatActivity {
 
-    RecyclerView recyclerViewPlayers;
+    RecyclerView recyclerViewPlayers, recyclerViewGames;
     Spinner spinnerTeams;
+
+
 
 
     @Override
@@ -43,9 +47,11 @@ public class ShowTeamsActivity extends AppCompatActivity {
 
         recyclerViewPlayers = findViewById(R.id.recViewPlayers);
         spinnerTeams = findViewById(R.id.spinnerTeams);
+        recyclerViewGames = findViewById(R.id.recyclerViewGames);
 
         DatabaseReference referencePlayers = FirebaseDatabase.getInstance().getReference().child("players");
         DatabaseReference referenceTeams = FirebaseDatabase.getInstance().getReference().child("teams");
+        DatabaseReference referenceGames = FirebaseDatabase.getInstance().getReference().child("games");
         ArrayList<String> teams = new ArrayList<>();
 
         referenceTeams.addValueEventListener(new ValueEventListener() {
@@ -53,12 +59,12 @@ public class ShowTeamsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
                     teams.clear();
-                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         teams.add(dataSnapshot.getValue(String.class));
                     }
                     ArrayAdapter<String> adapterTeams = new ArrayAdapter<>(ShowTeamsActivity.this, android.R.layout.simple_spinner_dropdown_item, teams);
                     spinnerTeams.setAdapter(adapterTeams);
-                }catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(ShowTeamsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
@@ -69,6 +75,31 @@ public class ShowTeamsActivity extends AppCompatActivity {
                 Toast.makeText(ShowTeamsActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        ArrayList<Game> allGames = new ArrayList<>();
+
+        referenceGames.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    allGames.clear();
+
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        Game game = dataSnapshot.getValue(Game.class);
+                        allGames.add(game);
+                    }
+
+                }catch (Exception e){
+                    Toast.makeText(ShowTeamsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         spinnerTeams.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,6 +130,21 @@ public class ShowTeamsActivity extends AppCompatActivity {
 
                     }
                 });
+
+
+                //FILTRIRAJ UTAKMICE I UBACI IH U ADAPTER RASPORED
+                ArrayList<Game> games = new ArrayList<>();
+
+                for(Game g : allGames){
+                    if(g.getTeam1().equals(team) || g.getTeam2().equals(team)){
+                        games.add(g);
+                    }
+                }
+                AdapterRaspored adapterRaspored = new AdapterRaspored(ShowTeamsActivity.this, games);
+                recyclerViewGames.setAdapter(adapterRaspored);
+                recyclerViewGames.setLayoutManager(new LinearLayoutManager(ShowTeamsActivity.this));
+
+
             }
 
             @Override
@@ -107,6 +153,17 @@ public class ShowTeamsActivity extends AppCompatActivity {
             }
         });
 
+        new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
     }
 
 
